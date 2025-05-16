@@ -1,16 +1,10 @@
 <template>
   <div class="container">
-    <h1>Contador</h1>
+    <h1>{{ title }}</h1>
     <p>{{ numero }}<sup>2</sup>={{ calcularCuadrado() }}</p>
-    <p>{{ numero }}<sup>2</sup>={{ calcularCuadrado() }}</p>
-    <p>{{ numero }}<sup>2</sup>={{ calcularCuadrado() }}</p>
-    <p>{{ numero }}<sup>2</sup>={{ calcularCuadrado() }}</p>
-    <p>{{ numero }}<sup>2</sup>={{ calcularCuadrado() }}</p>
-    <h1>computed</h1>
-    <p>{{ numero }}<sup>2</sup>={{ calCuadrado }}</p>
     <div>
       <button v-on:click="incrementar()">+1</button>
-      <button v-on:click="decrementar()">-1</button>
+      <button @click="decrementar()">-1</button>
     </div>
     <!--
     <p>{{ texto }}</p>
@@ -28,10 +22,28 @@
 
 <script>
 export default {
+  /*props: ["title", "value"],*/
+  props: {
+    title:String,
+    value: {
+      type:Number,
+      required: false,
+      default: 100,
+      validar(value){
+          return value>0;
+      }
+    },
+    p1: Boolean,
+    p2: Array,
+    p3: Object,
+    p4: Function,
+    p5: Date,
+    p6: Symbol,
+  },
   data() {
     return {
-      numero: 5,
-      texto: "Rensso Parra",
+      numero: this.value,
+      titulo: "Contador",
       activo: false,
       usuario: {
         nombre: "Rensso",
@@ -59,6 +71,13 @@ export default {
       return this.numero ** 2;
     },
   },
+  created(){
+    if(this.value > 0){
+      console.log('Es correcto')
+    }else{
+      throw new Error('Error el valor no puede ser menor que cero');
+    }
+  }
 };
 </script>
 
