@@ -1,5 +1,8 @@
 <template>
   <div class="container">
+    <div v-show="mostrar">
+      <h1>Estudiante Guardado</h1>
+    </div>
     <label for="id_nombre">Nombre:</label>
     <input v-model="nuevoNombre" type="text" id="id_nombre" />
     <label for="id_apellido">Apellido:</label>
@@ -11,15 +14,32 @@
     <label for="id_color">Color Preferido:</label>
     <input v-model="nuevoColorPreferido" type="text" id="id_color" />
     <button v-on:click="agregarEstudiante()">Agregar</button>
-    <ul>
-      <li
-        v-for="{ nombre, apellido, edad, genero, colorPreferido } in lista"
-        :key="nombre"
-      >
-        Nombre: {{ nombre }} - Apellido: {{ apellido }} - Edad: {{ edad }} -
-        {{ genero }} - {{ colorPreferido }}
-      </li>
-    </ul>
+
+    <table >
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Edad</th>
+          <th>Genero</th>
+          <th>Color Preferido</th>
+          <th>Accion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          v-for="{ nombre, apellido, edad, genero, colorPreferido } in lista"
+          :key="nombre"
+        >
+          <td>{{ nombre }}</td>
+          <td>{{ apellido }}</td>
+          <td>{{ edad }}</td>
+          <td>{{ genero }}</td>
+          <td>{{ colorPreferido }}</td>
+          <td><button>Ver</button></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
@@ -83,6 +103,7 @@ export default {
           colorPreferido: "amarillo",
         },
       ],
+      mostrar: false,
     };
   },
   methods: {
@@ -96,6 +117,9 @@ export default {
       };
       /*this.lista.unshift(nuevo);*/
       this.lista.push(nuevo);
+      this.mostrar=true;
+      this.nombre=null;
+      setTimeout(()=>{this.mostrar=false;},3000);
     },
   },
 };
@@ -110,14 +134,15 @@ export default {
   margin: 50px auto;
   padding: 30px;
 }
-label{
+label {
   display: block;
   color: #666;
   text-align: left;
   padding: 12px 3px;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
-input{
+input {
   display: block;
   background-color: #e6637fb9;
   color: rgb(255, 232, 232);
@@ -126,7 +151,6 @@ input{
   margin-bottom: 12px;
   border: 1px solid #ddd;
   padding: 10px 6px;
-  
 }
 
 button {
@@ -139,18 +163,20 @@ button {
   cursor: pointer;
   width: 100px;
 }
-ul{
-  list-style: none;
-  margin-top: 50px;
+table {
+  border-collapse: separate;
+  border-spacing: 20px;
+  background: none;
+  color: #b9afa2;
+  margin: auto;
 }
-li{
-  background: #f5f0e9;
-  padding: 6px;
-  border-radius: 12px;
-  margin-bottom: 15px;
-  color: #a162a1;
-  font-size: 19px;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+th {
+  padding: 12px 20px;
 }
-
+td,
+th {
+  border-radius: 16px;
+  background: #f5eef4;
+  color: #b17979;
+}
 </style>
