@@ -118,7 +118,7 @@ export default {
       /*this.lista.unshift(nuevo);*/
       this.lista.push(nuevo);
       this.mostrar=true;
-      this.nombre=null;
+      this.nuevoNombre=null;
       setTimeout(()=>{this.mostrar=false;},3000);
     },
   },

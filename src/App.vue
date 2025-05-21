@@ -1,7 +1,8 @@
 <template>
   <!--<HolaMundoView />-->
   <!--<ContadorView />-->
-  <EstudianteTablaView />
+  <!--<EstudianteTablaView />-->
+  <PeliculaView />
 </template>
 
 <script>
@@ -9,7 +10,7 @@ import HolaMundoView from "@/views/HolaMundoView.vue";
 //import ContadorView from "@/views/ContadorView.vue";
 import EstudianteView from "@/views/EstudianteView.vue";
 import EstudianteTablaView from './views/EstudianteTablaView.vue';
-
+import PeliculaView from './views/PeliculaView.vue';
 export default {
   name: "App",
   components: {
@@ -17,6 +18,7 @@ export default {
     //ContadorView,
     EstudianteView,
     EstudianteTablaView,
+    PeliculaView,
   },
 };
 </script>
