@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     async consumirAPI() {
-      this.respuesta + "Pensando.......";
+      this.respuesta = "Pensando.......";
       const resp = await consultarRespuestaFachada();
       console.log(resp);
       console.log(resp.image);
